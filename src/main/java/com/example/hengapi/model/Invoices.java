@@ -1,5 +1,6 @@
 package com.example.hengapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,8 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Builder
 public class Invoices {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer invoiceId;
     private Timestamp invoiceDate;
+
 }

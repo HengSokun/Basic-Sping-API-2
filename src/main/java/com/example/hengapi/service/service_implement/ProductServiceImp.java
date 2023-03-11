@@ -24,21 +24,21 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public Products getProductById(Integer productId) {
-        return null;
+        return productRepository.findProductsById(productId);
     }
 
     @Override
     public Products addNewProduct(Products products) {
-        return null;
+        return productRepository.addNewProducts(products);
     }
 
     @Override
     public boolean deleteProductById(Integer productID) {
-        return false;
+        return productRepository.deleteProductById(productID);
     }
 
     @Override
     public Integer updateProductById(Integer productId, ProductRequest productRequests) {
-        return null;
+        return productRepository.updateProductsById(productId, productRequests);
     }
 }

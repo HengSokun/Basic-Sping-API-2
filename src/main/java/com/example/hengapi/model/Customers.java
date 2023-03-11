@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Customers {
-
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer customerID;
     private String customerName;

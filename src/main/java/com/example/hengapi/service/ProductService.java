@@ -10,7 +10,7 @@ public interface ProductService {
 
     Products getProductById(Integer productId);
 
-    Products addNewProduct(Products products);
+    Products addNewProduct(Products productsRequest);
 
     boolean deleteProductById(Integer productID);
 

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductResponse <P> {
+public class ProductResponse <R> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private P payload;
+    private R payload;
     private String message;
     private boolean success;
 }

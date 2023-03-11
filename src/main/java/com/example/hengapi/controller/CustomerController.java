@@ -33,7 +33,7 @@ public class CustomerController {
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
 
-//    Get author by Id from list
+//    Get author by ID from list
     @GetMapping("/customer_id/{customerId}")
     @Operation(summary = "Get customer by Id")
     public ResponseEntity<CustomerResponse<Customers>> getCustomerById (@PathVariable("customerId") Integer customerId){

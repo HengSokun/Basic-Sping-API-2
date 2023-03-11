@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProductRequest {
-    private Integer productId;
     private String productName;
-    private int productPrice;
+    private float productPrice;
 }
