@@ -1,4 +1,4 @@
 package com.example.hengapi.repository;
 
-public class InvoiceRepository {
+public interface InvoiceRepository {
 }
