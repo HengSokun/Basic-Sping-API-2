@@ -1,6 +1,7 @@
 package com.example.hengapi.repository;
 
 import com.example.hengapi.model.Customers;
+import com.example.hengapi.model.request.CustomerRequest;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -27,4 +28,12 @@ public interface CustomerRepository {
     @Result(property = "customerAddress", column = "customer_address")
     @Result(property = "customerPhone", column = "customer_phone")
     Customers getCustomerById(Integer customerId);
+
+    @Select("INSERT INTO customers(customer_name, customer_address, customer_phone) " +
+            "VALUES (#{customerRequest.customerName}, #{customerRequest.customerAddress}, #{customerRequest.customerPhone} " +
+            "RETURNING *")
+    Integer insertCustomer(@Param("customerRequest") CustomerRequest customerRequest);
+
+    @Delete("DELETE FORM customers WHERE customer_id = #{customerId}")
+    boolean deleteCustomerById(@Param("customerId") Integer customerId);
 }

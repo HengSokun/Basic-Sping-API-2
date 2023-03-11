@@ -17,6 +17,7 @@ public class CustomerServiceImp implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
+//    Get all customer from list
     @Override
     public List<Customers> getAllCustomers() {
         return customerRepository.findAllCustomer();
@@ -24,7 +25,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public Integer addNewCustomer(CustomerRequest customerRequest) {
-        return null;
+        return customerRepository.insertCustomer(customerRequest);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public boolean deleteCustomerById(Integer customerId) {
-        return false;
+        return customerRepository.deleteCustomerById(customerId);
     }
 
     @Override
