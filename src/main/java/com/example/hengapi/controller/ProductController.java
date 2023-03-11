@@ -16,16 +16,20 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
 //   Get all product
-    @GetMapping("/all-product ")
+    @GetMapping("/all-product")
     @Operation(summary = "Get all products from list")
-    public ResponseEntity<List<Products>> getAllProducts(){
-        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+    public ResponseEntity<ProductResponse<List<Products>>> getAllProducts(){
+        ProductResponse<List<Products>> productResponse = ProductResponse.<List<Products>>builder()
+                .payload(productService.getAllProducts())
+                .message("Successfully fetch all products")
+                .success(true)
+                .build();
+        return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
 
     //    Get product by ID from list

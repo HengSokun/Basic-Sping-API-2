@@ -19,7 +19,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<Products> getAllProducts() {
-        return null;
+        return productRepository.findAllProducts();
     }
 
     @Override

@@ -7,14 +7,17 @@ import java.util.List;
 
 @Mapper
 public interface ProductRepository {
-    @Results({
-            @Result(property = "productId", column = "product_id"),
-            @Result(property = "productName", column = "product_name"),
-            @Result(property = "productPrice", column = "product_price")
-    })
+//    @Results({
+//            @Result(property = "productId", column = "product_id"),
+//            @Result(property = "productName", column = "product_name"),
+//            @Result(property = "productPrice", column = "product_price")
+//    })
 
     @Select("SELECT * FROM products")
-
-
+    @Result(property = "productId", column = "product_id")
+    @Result(property = "productName", column = "product_name")
+    @Result(property = "productPrice", column = "product_price")
     List<Products> findAllProducts();
+
+
 }
