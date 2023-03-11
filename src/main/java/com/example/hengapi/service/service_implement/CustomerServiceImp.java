@@ -29,7 +29,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public Customers getCustomerById(Integer customerId) {
-        return null;
+        return customerRepository.getCustomerById(customerId);
     }
 
     @Override

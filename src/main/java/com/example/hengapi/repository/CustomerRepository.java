@@ -8,13 +8,23 @@ import java.util.List;
 @Mapper
 public interface CustomerRepository {
 
-    @Results({
-            @Result(property = "customerID", column = "customer_id"),
-            @Result(property = "customerName", column = "customer_name"),
-            @Result(property = "customerAddress", column = "customer_address"),
-            @Result(property = "customerPhone", column = "customer_phone")
-    })
+//    @Results({
+//            @Result(property = "customerID", column = "customer_id"),
+//            @Result(property = "customerName", column = "customer_name"),
+//            @Result(property = "customerAddress", column = "customer_address"),
+//            @Result(property = "customerPhone", column = "customer_phone")
+//    })
     @Select("SELECT * FROM customers")
-//    @Result(property = "customerID", column = "customer_id")
+    @Result(property = "customerID", column = "customer_id")
+    @Result(property = "customerName", column = "customer_name")
+    @Result(property = "customerAddress", column = "customer_address")
+    @Result(property = "customerPhone", column = "customer_phone")
     List<Customers> findAllCustomer();
+
+    @Select("SELECT * FROM customers WHERE customer_id = #{customerId}")
+    @Result(property = "customerID", column = "customer_id")
+    @Result(property = "customerName", column = "customer_name")
+    @Result(property = "customerAddress", column = "customer_address")
+    @Result(property = "customerPhone", column = "customer_phone")
+    Customers getCustomerById(Integer customerId);
 }

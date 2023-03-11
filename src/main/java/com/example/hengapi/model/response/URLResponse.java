@@ -5,13 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.security.Timestamp;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerResponse<R> {
-    private R payload;
-    private String message;
-    private boolean success;
-
+public class URLResponse<P> {
+    private Timestamp timestamp;
+    private P payload;
 }
