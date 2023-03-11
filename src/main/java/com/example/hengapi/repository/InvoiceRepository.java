@@ -3,6 +3,7 @@ package com.example.hengapi.repository;
 import com.example.hengapi.model.Customers;
 import com.example.hengapi.model.Invoices;
 import com.example.hengapi.model.Products;
+import com.example.hengapi.model.request.InvoiceRequest;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -16,10 +17,10 @@ public interface InvoiceRepository {
             value = {
                     @Result(property = "invoiceId", column = "invoice_id"),
                     @Result(property = "invoiceDate", column = "invoice_date"),
-                    @Result(property = "customer", column = "customer_id", javaType = Customers.class,
-                            one = @One(select = "com.example.mapper.CustomerRepository.getCustomerById")),
-                    @Result(property = "products", column = "invoice_id", javaType = Products.class,
-                            many = @Many(select = "com.example.mapper.ProductRepository.getProductsByInvoiceId"))
+                    @Result(property = "customer", column = "customer_id",
+                            one = @One(select = "com.example.repository.CustomerRepository.getCustomerById")),
+                    @Result(property = "products", column = "invoice_id",
+                            many = @Many(select = "com.example.repository.ProductRepository.getProductsByInvoiceId"))
             }
     )
     List<Invoices> getAllInvoices();
@@ -31,4 +32,10 @@ public interface InvoiceRepository {
             """)
     @ResultMap("Mapper")
     List<Products> getProductByInvoiceId (@Param("invoiceId") Integer invoiceId);
+
+    @Insert("INSERI INTO invoices (invoice_date, customer_id " +
+            "VALUES (#{new.invoice_date}, #{new.customer_id} " +
+            "RETURNING invoice_id")
+    @ResultMap("Mapper")
+    Integer newInvoice(@Param("new")InvoiceRequest invoiceRequest);
 }
