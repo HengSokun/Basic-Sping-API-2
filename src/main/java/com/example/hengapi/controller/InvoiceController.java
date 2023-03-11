@@ -37,9 +37,9 @@ public class InvoiceController {
     //    Get all invoice from list
     @GetMapping("/all-invoice")
     @Operation(summary = "Get all invoice from list")
-    public ResponseEntity<?> getAllInvoice() {
-        InvoiceResponse<Invoices> invoiceResponse = InvoiceResponse.<Invoices>builder()
-                .payload((Invoices) invoiceService.getAllInvoices())
+    public ResponseEntity<InvoiceResponse<List<Invoices>>> getAllInvoice() {
+        InvoiceResponse<List<Invoices>> invoiceResponse = InvoiceResponse.<List<Invoices>>builder()
+                .payload(invoiceService.getAllInvoices())
                 .message("Successfully get all invoices")
                 .success(true)
                 .build();

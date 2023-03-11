@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class InvoiceRequest {
-    private Integer invoiceId;
     private String customerId;
     private List<Invoices> items;
 }

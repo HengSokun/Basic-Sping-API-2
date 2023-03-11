@@ -23,7 +23,7 @@ public class InvoiceServiceImp implements InvoiceService {
 
     @Override
     public Invoices getInvoiceById(Integer invoiceId) {
-        return null;
+        return (Invoices) invoiceRepository.getProductByInvoiceId(invoiceId);
     }
 
     @Override
