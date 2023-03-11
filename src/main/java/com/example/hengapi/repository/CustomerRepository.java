@@ -53,7 +53,7 @@ public interface CustomerRepository {
 
 //    Update data query
     @Select("UPDATE customers " +
-            "SET customer_name = #(customerRequests.customerName}, " +
+            "SET customer_name = #{customerRequests.customerName}, " +
             "customer_address = #{customerRequests.customerAddress}, " +
             "customer_phone = #{customerRequests.customerPhone} " +
             "WHERE customer_id = #{customerId} " +
