@@ -19,7 +19,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<Products> getAllProducts() {
-        return productRepository.findAllProducts();
+        return null;
     }
 
     @Override
@@ -28,12 +28,17 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public Integer addNewProduct(ProductRequest productRequest) {
+    public Products addNewProduct(Products products) {
         return null;
     }
 
     @Override
-    public Integer updateProductById(ProductRequest productRequest) {
+    public boolean deleteProductById(Integer productID) {
+        return false;
+    }
+
+    @Override
+    public Integer updateProductById(Integer productId, ProductRequest productRequests) {
         return null;
     }
 }
