@@ -52,9 +52,9 @@ public class CustomerController {
 //    Insert new customer to the list with @request body
     @PostMapping("/add-customer")
     @Operation(summary = "Insert new customer to list")
-    public ResponseEntity<CustomerResponse<Customers>> addNewCustomer(@RequestBody CustomerRequest customerRequest){
+    public ResponseEntity<?> addNewCustomer(@RequestBody Customers customers){
         CustomerResponse<Customers> customerResponse = CustomerResponse.<Customers>builder()
-                .payload(customerService.addNewCustomer(customerRequest))
+                .payload(customerService.addNewCustomer(customers))
                 .message("Successfully added customer to list")
                 .success(true).build();
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
@@ -71,6 +71,23 @@ public class CustomerController {
                     .message("Successfully delete the customer")
                     .success(true)
                     .build();
+            return new ResponseEntity<>(customerResponse, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+//    Update customer by ID
+    @PutMapping("/update/{customer_id}")
+    @Operation(summary = "Update customer by Id")
+    public ResponseEntity<CustomerResponse<Customers>> updateCustomerById(@PathVariable("customer_id") Integer customerId, @RequestBody CustomerRequest customerRequests){
+
+        CustomerResponse<Customers> customerResponse = null;
+        Integer customerResponseUpdate  = customerService.updateCustomerById(customerId, customerRequests);
+        if (customerResponseUpdate != null) {
+            customerResponse = CustomerResponse.<Customers>builder()
+                    .payload(customerService.getCustomerById(customerId))
+                    .message("Successfully added customer to list")
+                    .success(true).build();
             return new ResponseEntity<>(customerResponse, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

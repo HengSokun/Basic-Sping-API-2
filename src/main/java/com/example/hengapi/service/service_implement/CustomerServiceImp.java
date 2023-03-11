@@ -24,8 +24,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public Integer addNewCustomer(CustomerRequest customerRequest) {
-        return customerRepository.insertCustomer(customerRequest);
+    public Customers addNewCustomer(Customers customers) {
+        return customerRepository.insertCustomer(customers);
     }
 
     @Override
@@ -39,7 +39,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public Integer updateCustomerById(CustomerRequest customerRequest) {
-        return null;
+    public  Integer updateCustomerById(Integer customerId, CustomerRequest customerRequests) {
+        return customerRepository.updateCustomerById(customerId, customerRequests);
     }
+
 }

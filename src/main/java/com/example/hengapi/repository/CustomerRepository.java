@@ -15,6 +15,8 @@ public interface CustomerRepository {
 //            @Result(property = "customerAddress", column = "customer_address"),
 //            @Result(property = "customerPhone", column = "customer_phone")
 //    })
+
+//   Query all data in table
     @Select("SELECT * FROM customers")
     @Result(property = "customerID", column = "customer_id")
     @Result(property = "customerName", column = "customer_name")
@@ -22,6 +24,7 @@ public interface CustomerRepository {
     @Result(property = "customerPhone", column = "customer_phone")
     List<Customers> findAllCustomer();
 
+//    Select customer by ID
     @Select("SELECT * FROM customers WHERE customer_id = #{customerId}")
     @Result(property = "customerID", column = "customer_id")
     @Result(property = "customerName", column = "customer_name")
@@ -29,11 +32,35 @@ public interface CustomerRepository {
     @Result(property = "customerPhone", column = "customer_phone")
     Customers getCustomerById(Integer customerId);
 
-    @Select("INSERT INTO customers(customer_name, customer_address, customer_phone) " +
-            "VALUES (#{customerRequest.customerName}, #{customerRequest.customerAddress}, #{customerRequest.customerPhone} " +
-            "RETURNING *")
-    Integer insertCustomer(@Param("customerRequest") CustomerRequest customerRequest);
 
-    @Delete("DELETE FORM customers WHERE customer_id = #{customerId}")
+//    Insert data query
+    @Select("INSERT INTO customers(customer_name, customer_address, customer_phone) " +
+            "VALUES (#{customers.customerName}, #{customers.customerAddress}, #{customers.customerPhone}) " +
+            "RETURNING * ")
+    @Result(property = "customerID", column = "customer_id")
+    @Result(property = "customerName", column = "customer_name")
+    @Result(property = "customerAddress", column = "customer_address")
+    @Result(property = "customerPhone", column = "customer_phone")
+    Customers insertCustomer(@Param("customers") Customers customers);
+
+//    Delete data by ID
+    @Delete("DELETE FROM customers WHERE customer_id = #{customerId}")
+    @Result(property = "customerID", column = "customer_id")
+    @Result(property = "customerName", column = "customer_name")
+    @Result(property = "customerAddress", column = "customer_address")
+    @Result(property = "customerPhone", column = "customer_phone")
     boolean deleteCustomerById(@Param("customerId") Integer customerId);
+
+//    Update data query
+    @Select("UPDATE customers " +
+            "SET customer_name = #(customerRequests.customerName}, " +
+            "customer_address = #{customerRequests.customerAddress}, " +
+            "customer_phone = #{customerRequests.customerPhone} " +
+            "WHERE customer_id = #{customerId} " +
+            "RETURNING * ")
+    @Result(property = "customerID", column = "customer_id")
+    @Result(property = "customerName", column = "customer_name")
+    @Result(property = "customerAddress", column = "customer_address")
+    @Result(property = "customerPhone", column = "customer_phone")
+    Integer updateCustomerById(Integer customerId, @Param("customerRequests") CustomerRequest customerRequest);
 }

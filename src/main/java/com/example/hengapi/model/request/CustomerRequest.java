@@ -11,5 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CustomerRequest {
 
-    private String customerName, customerAddress, customerPhone;
+    private String customerName;
+    private String customerAddress;
+    private String customerPhone;
 }
