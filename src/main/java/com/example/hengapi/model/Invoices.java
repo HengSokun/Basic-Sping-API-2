@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,5 +18,7 @@ public class Invoices {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer invoiceId;
     private Timestamp invoiceDate;
+    private Customers customer;
+    private List<Products> products;
 
 }

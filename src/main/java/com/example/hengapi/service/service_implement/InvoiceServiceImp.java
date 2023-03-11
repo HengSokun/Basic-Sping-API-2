@@ -2,20 +2,23 @@ package com.example.hengapi.service.service_implement;
 
 import com.example.hengapi.model.Invoices;
 import com.example.hengapi.model.request.InvoiceRequest;
+import com.example.hengapi.repository.InvoiceRepository;
 import com.example.hengapi.service.InvoiceService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class InvoiceServiceImp implements InvoiceService {
-    @Override
-    public List<Invoices> getAllInvoices() {
-        return null;
+
+    private final InvoiceRepository invoiceRepository;
+
+    public InvoiceServiceImp(InvoiceRepository invoiceRepository) {
+        this.invoiceRepository = invoiceRepository;
     }
 
     @Override
-    public Integer addNewInvoice(InvoiceRequest invoiceRequest) {
-        return null;
+    public List<Invoices> getAllInvoices() {
+        return invoiceRepository.getAllInvoices();
     }
 
     @Override
@@ -24,12 +27,17 @@ public class InvoiceServiceImp implements InvoiceService {
     }
 
     @Override
-    public boolean deleteInvoiceById(InvoiceRequest invoiceRequest) {
+    public Invoices addNewInvoice(Invoices invoices) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteInvoiceById(Integer invoiceID) {
         return false;
     }
 
     @Override
-    public Integer updateInvoiceById(InvoiceRequest invoiceRequest) {
+    public Integer updateInvoiceById(Integer invoiceId, InvoiceRequest invoiceRequests) {
         return null;
     }
 }

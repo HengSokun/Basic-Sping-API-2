@@ -1,11 +1,13 @@
 package com.example.hengapi.model.request;
 
+import com.example.hengapi.model.Invoices;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -13,5 +15,6 @@ import java.sql.Timestamp;
 @Builder
 public class InvoiceRequest {
     private Integer invoiceId;
-    private Timestamp invoiceDate;
+    private String customerId;
+    private List<Invoices> items;
 }

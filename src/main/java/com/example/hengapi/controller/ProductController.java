@@ -101,7 +101,7 @@ public class ProductController {
         if (productService.deleteProductById(productID)) {
             ProductResponse<Products> productResponse = ProductResponse.<Products>builder()
                     .payload(productService.getProductById(productID))
-                    .message("Successfully delete the product")
+                    .message("Delete this product is successful !!")
                     .success(true)
                     .build();
             return new ResponseEntity<>(productResponse, HttpStatus.OK);

@@ -15,4 +15,5 @@ public class InvoiceResponse<I> {
     private I payload;
     private String message;
     private boolean success;
+
 }

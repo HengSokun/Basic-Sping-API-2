@@ -12,6 +12,10 @@ import java.security.Timestamp;
 @AllArgsConstructor
 @Builder
 public class URLResponse<P> {
-    private Timestamp timestamp;
     private P payload;
+    private Integer invoiceId;
+    private Timestamp timestamp;
+    private String message;
+    private boolean success;
+
 }
